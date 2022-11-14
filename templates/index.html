@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #blank {margin-left: 50px;margin-top: 10px;}
+        p {margin-left:20px;}
+        body {background-image:url("images/back40.gif");}
+    </style>
+</head>
+<body>
+    <h2 id="blank">Image Segmentation (Divide an uploaded picture into as many segments as a number that you input according to the color)</h2>
+    <span id="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;—— Programmed by Yao Xiang</span>
+    <h4>Instructions</h4>
+    <ul>
+        <li>Please <font color="red"><b>don't upload any photo related to your personal information</b></font> since the website is hosted on private server. You can upload a scenic photo or a pet photo, etc.</li>
+        <ul>
+            <li><span>You can <font color="red"><b><a href="static/view.jpg" download="view.jpg">download a JPG picture I prepared in advance</a></b></font> if you don't have one.&nbsp;&nbsp;</span></li>
+        </ul>
+        <li><span>I've accidentally found this program <font color="red"><b>can also be used to remove the watermark</b></font>. You can try this feature by <b><a href="static/Watermark.jpg" download="Watermark.jpg">downloading a picture with watermark on it</a></b>.&nbsp;&nbsp;</span></li>
+        <ul>
+            <li>For this watermark picture, you need to <font color="red"><b>type in 2</b></font>, since the expected result only has two colors.</li>
+            <ul><li>I designed the program to automatically switch to watermark removal mode if the input is 2. The difference here is the randomness of the choice of initial points.</li></ul>
+        </ul>
+        <li>You may also directly preview all the example results by scrolling to the bottom.</li>
+    </ul>
+    <h4>Get Started</h4>
+    <div id="blank">
+        <form action="/transform" method="POST" enctype="multipart/form-data">    
+            <span>Upload a JPG file here:&nbsp;&nbsp;</span>
+            <input type="file" name="file" accept="image/jpg" value="Upload"  />
+            <br>
+            <span>Type in an integer (e.g., 3, 5):&nbsp;&nbsp;<input size="9" type="text" name="k"/> (An input of 3 takes 18s; 5 takes 27s; 10 takes 68s; The actual time may be shorter or longer depending on the size of the picture.)&nbsp;&nbsp;</span>           
+            <br>
+            <span>Then click this:&nbsp;&nbsp;</span>
+            <input type="submit" value="Transform!" />
+            <br>
+            <span>Please wait for a few seconds. The outcome will show up below.</span>
+        </form>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <div><b style="font-size: 25px; color: red;">{{ ALERT }}</b></div>
+        <img src="{{ img_dir_ori }}" alt="BEFORE" height="400">
+        <img src="{{ img_dir_res }}" alt="AFTER" height="400">
+    </div>
+    <h4>How I implemented this program</h4>
+    <ul>
+        <li>I used K-means clustering algorithm to cluster the pixels with similar colors. Then assign the mean color of each cluster to the corresponding pixels.</li>
+        <li>To remove watermark, the algorithm is the same, except that the choice of initial points is non-random.</li>
+        <ul><li>I think there are still a lot to work on. I only implement the gray situation.</li></ul>
+    </ul>
+    <h4>Example Results</h4>
+    <div>
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For k=2:</h4>
+        <div style="text-align: center;">
+            <img src="static/view.jpg" alt="BEFORE" height="400">
+            <img src="static/view_2.jpg" alt="AFTER" height="400">
+        </div style="text-align: center;">
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For k=5:</h4>
+        <div style="text-align: center;">
+            <img src="static/view.jpg" alt="BEFORE" height="400">
+            <img src="static/view_5.jpg" alt="AFTER" height="400">
+        </div>
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For watermark removal:</h4>
+        <div style="text-align: center;">
+            <img src="static/Watermark.jpg" alt="BEFORE" height="400">
+            <img src="static/Watermark_after.jpg" alt="AFTER" height="400">
+        </div>
+    </div>
+</body>
+</html>

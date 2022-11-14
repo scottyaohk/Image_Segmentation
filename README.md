@@ -12,11 +12,11 @@ Divide an uploaded picture into as many segments as a number that you input acco
 <h2>Preview the effect</h2>
     <div>
         <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For k=2:</h4>
-            <img src="static/view.jpg" alt="BEFORE" height="200">
-            <img src="static/view_2.jpg" alt="AFTER" height="200">
+            <img src="static/view.jpg" alt="BEFORE" height="230">
+            <img src="static/view_2.jpg" alt="AFTER" height="230">
         <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For k=5:</h4>
-            <img src="static/view.jpg" alt="BEFORE" height="200">
-            <img src="static/view_5.jpg" alt="AFTER" height="200">
+            <img src="static/view.jpg" alt="BEFORE" height="230">
+            <img src="static/view_5.jpg" alt="AFTER" height="230">
         <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For watermark removal:</h4>
             <img src="static/Watermark.jpg" alt="BEFORE" height="300">
             <img src="static/Watermark_after.jpg" alt="AFTER" height="300">
